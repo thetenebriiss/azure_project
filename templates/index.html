@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            margin: 0 auto;
+            max-width: 400px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 20px auto;
+            max-width: 400px;
+        }
+
+        li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        li a {
+            color: white;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+
+        li a:hover {
+            text-decoration: underline;
+        }
+
+        .delete-btn{
+            background-color: #dc3545;
+            padding: 6px 15px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Todo List</h1>
+    <form action="/" method="POST">
+        <label for="content">Todo:</label>
+        <input type="text" id="content" name="content">
+        <label for="degree">Degree:</label>
+        <input type="text" id="degree" name="degree">
+        <button type="submit">Add Todo</button>
+    </form>
+    
+    <ul>
+        {% for todo in todos %}
+            <li>
+                <span>
+                    <b>{{ todo.content }}</b> 
+                    - 
+                    <i>{{ todo.degree }}</i>
+                </span>
+                <a href="{{ url_for('delete', id=todo._id) }}" class="delete-btn">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
